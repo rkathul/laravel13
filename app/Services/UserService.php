@@ -10,8 +10,8 @@ class UserService
     {
     }
 
-    public function getAllUsers()
+    public function createUser(array $data)
     {
-        return $this->userRepository->getAllUsers();
+        return $this->userRepository->createUser($data);
     }
 }

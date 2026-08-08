@@ -11,4 +11,9 @@ class UserRepository
     {
         return User::query()->select(['id', 'name', 'email', 'created_at', 'updated_at']);
     }
+
+    public function createUser(array $data): User
+    {
+        return User::create($data);
+    }
 }
