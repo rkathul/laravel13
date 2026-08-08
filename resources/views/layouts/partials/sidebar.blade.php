@@ -27,6 +27,15 @@
             <p>Dashboard</p>
           </a>
         </li>
+        <li class="nav-item">
+          <a
+            href="{{ route('admin.users.index') }}"
+            class="nav-link {{ request()->routeIs('admin.users.*') ? 'active' : '' }}"
+          >
+            <i class="nav-icon bi bi-people"></i>
+            <p>Users</p>
+          </a>
+        </li>
         <li class="nav-header">SAMPLE</li>
         <li class="nav-item">
           <a href="#" class="nav-link">
