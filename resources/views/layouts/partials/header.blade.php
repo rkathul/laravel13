@@ -79,7 +79,7 @@
             </p>
           </li>
           <li class="user-footer">
-            <a href="{{ route('admin.login') }}" class="btn btn-outline-danger float-end">Sign out</a>
+            <a href="{{ route('admin.logout') }}" class="btn btn-outline-danger float-end">Sign out</a>
           </li>
         </ul>
       </li>
