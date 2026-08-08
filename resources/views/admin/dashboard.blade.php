@@ -4,16 +4,17 @@
 @section('page-title', 'Dashboard')
 
 @section('content')
-  <div class="row">
-    <div class="col-12">
-      <div class="card">
-        <div class="card-header">
-          <h3 class="card-title">Welcome</h3>
+  <div class="row g-3">
+    <div class="col-md-3 col-6">
+      <div class="small-box text-bg-primary">
+        <div class="inner">
+          <h3>{{ $usersCount }}</h3>
+          <p>Users</p>
         </div>
-        <div class="card-body">
-          This is the after-login layout with header, sidebar, and footer.
-        </div>
-        <div class="card-footer">Sample content only — no functionality wired yet.</div>
+        <i class="bi bi-people small-box-icon" aria-hidden="true"></i>
+        <a href="{{ route('admin.users.index') }}" class="small-box-footer link-light">
+          More info <i class="bi bi-arrow-right"></i>
+        </a>
       </div>
     </div>
   </div>

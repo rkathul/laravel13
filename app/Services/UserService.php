@@ -28,4 +28,9 @@ class UserService
     {
         return $this->userRepository->deleteUser($id);
     }
+
+    public function getUsersCount()
+    {
+        return $this->userRepository->getUsersCount();
+    }
 }

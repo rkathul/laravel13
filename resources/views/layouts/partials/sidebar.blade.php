@@ -36,19 +36,7 @@
             <p>Users</p>
           </a>
         </li>
-        <li class="nav-header">SAMPLE</li>
-        <li class="nav-item">
-          <a href="#" class="nav-link">
-            <i class="nav-icon bi bi-file-earmark"></i>
-            <p>Starter Page</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('admin.login') }}" class="nav-link">
-            <i class="nav-icon bi bi-box-arrow-in-right"></i>
-            <p>Login Page</p>
-          </a>
-        </li>
+
       </ul>
     </nav>
   </div>

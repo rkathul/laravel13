@@ -33,4 +33,9 @@ class UserRepository
     {
         User::findOrFail($id)->delete();
     }
+
+    public function getUsersCount(): int
+    {
+        return User::count();
+    }
 }
