@@ -24,6 +24,11 @@ class LoginController extends Controller
         if (Auth::attempt($request->only('email', 'password'))) {
             return redirect()->route('admin.dashboard');
         }
-        return redirect()->route('admin.login')->with('error', 'Invalid credentials');
+
+        toastr()->error('Invalid user name or password', [
+            'timeOut' => 10000,
+        ]);
+
+        return redirect()->route('admin.login');
     }
 }

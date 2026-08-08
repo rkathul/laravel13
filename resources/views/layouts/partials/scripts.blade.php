@@ -22,6 +22,28 @@
   crossorigin="anonymous"
 ></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+<script>
+  $.validator.setDefaults({
+    errorElement: 'div',
+    errorClass: 'invalid-feedback',
+    validClass: 'is-valid',
+    highlight: function (element) {
+      $(element).addClass('is-invalid').removeClass('is-valid');
+    },
+    unhighlight: function (element) {
+      $(element).removeClass('is-invalid').addClass('is-valid');
+    },
+    errorPlacement: function (error, element) {
+      const group = element.closest('.input-group');
+      if (group.length) {
+        group.addClass('has-validation');
+        group.append(error);
+      } else {
+        error.insertAfter(element);
+      }
+    },
+  });
+</script>
 
 <script>
   const SELECTOR_SIDEBAR_WRAPPER = '.sidebar-wrapper';

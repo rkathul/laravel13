@@ -12,20 +12,33 @@
       <div class="card-body login-card-body">
         <p class="login-box-msg">Sign in to start your session</p>
 
-        {{-- Layout only: no auth functionality --}}
-        <form action="{{ route('admin.login.post') }}" id="loginForm" method="post">
+        <form action="{{ route('admin.login.post') }}" id="loginForm" method="post" novalidate>
           @csrf
           <label class="visually-hidden" for="loginEmail">Email</label>
-          <div class="input-group mb-3">
-            <input id="loginEmail" name="email" type="email" class="form-control" placeholder="Email" />
+          <div class="input-group has-validation mb-3">
+            <input
+              id="loginEmail"
+              name="email"
+              type="email"
+              class="form-control"
+              placeholder="Email"
+              required
+            />
             <div class="input-group-text">
               <span class="bi bi-envelope"></span>
             </div>
           </div>
 
           <label class="visually-hidden" for="loginPassword">Password</label>
-          <div class="input-group mb-3">
-            <input id="loginPassword" name="password" type="password" class="form-control" placeholder="Password" />
+          <div class="input-group has-validation mb-3">
+            <input
+              id="loginPassword"
+              name="password"
+              type="password"
+              class="form-control"
+              placeholder="Password"
+              required
+            />
             <div class="input-group-text">
               <span class="bi bi-lock-fill"></span>
             </div>
@@ -55,18 +68,26 @@
 @endsection
 @push('scripts')
   <script>
-    $(document).ready(function () {
-      $('#loginForm').validate({
-        rules: {
-          email: {
+    $('#loginForm').validate({
+    rules: {
+        email: {
             required: true,
-            email: true,
-          },
-          password: {
-            required: true,
-          },
+            email: true
         },
-      });
-    });
+        password: {
+            required: true
+        }
+    },
+
+    messages: {
+        email: {
+            required: 'Email is required',
+            email: 'Email is not valid'
+        },
+        password: {
+            required: 'Password is required'
+        }
+    }
+});
   </script>
 @endpush
