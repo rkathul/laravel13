@@ -14,4 +14,13 @@ class UserService
     {
         return $this->userRepository->createUser($data);
     }
+
+    public function getUserById(int $id)
+    {
+        return $this->userRepository->getUserById($id);
+    }
+    public function updateUser(array $data, int $id)
+    {
+        return $this->userRepository->updateUser($data, $id);
+    }
 }

@@ -16,4 +16,17 @@ class UserRepository
     {
         return User::create($data);
     }
+
+    public function getUserById(int $id): User
+    {
+        return User::select(['id', 'name', 'email'])->findOrFail($id);
+    }
+
+    public function updateUser(array $data, int $id): User
+    {
+        $user = User::findOrFail($id);
+        $user->update($data);
+
+        return $user;
+    }
 }

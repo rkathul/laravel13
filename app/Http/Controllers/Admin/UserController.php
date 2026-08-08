@@ -6,6 +6,7 @@ use App\DataTables\UsersDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\CreateUserRequest;
 use App\Services\UserService;
+use App\Http\Requests\User\UpdateUserRequest;
 
 class UserController extends Controller
 {
@@ -25,9 +26,20 @@ class UserController extends Controller
 
     public function store(CreateUserRequest $request)
     {
-        $this->userService->createUser($request->all());
+        $this->userService->createUser($request->validated());
         return redirect()->route('admin.users.index')->with('success', 'User created successfully');
     }
 
+    public function edit(int $id)
+    {
+        $user = $this->userService->getUserById($id);
+        return view('admin.users.edit', compact('user'));
+    }
+
+    public function update(UpdateUserRequest $request, int $id)
+    {
+        $this->userService->updateUser($request->validated(), $id);
+        return redirect()->route('admin.users.index')->with('success', 'User updated successfully');
+    }
 
 }

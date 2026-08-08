@@ -22,7 +22,7 @@ class UsersDataTable extends DataTable
         return (new EloquentDataTable($query))
             ->addIndexColumn()
             ->editColumn('created_at', fn (User $user) => $user->created_at?->format('Y-m-d H:i'))
-            ->editColumn('updated_at', fn (User $user) => $user->updated_at?->format('Y-m-d H:i'))
+            ->editColumn('action', fn (User $user) => '<a href="'.route('admin.users.edit', $user->id).'" class="btn btn-primary">Edit</a> <a href="javascript:void(0)" class="btn btn-danger">Delete</a>')
             ->setRowId('id');
     }
 
@@ -66,7 +66,8 @@ class UsersDataTable extends DataTable
             Column::make('name')->title('Name'),
             Column::make('email')->title('Email'),
             Column::make('created_at')->title('Created At'),
-            Column::make('updated_at')->title('Updated At'),
+            Column::make('action')->title('Action')->orderable(false)->searchable(false)->exportable(false)->width(100),
+
         ];
     }
 
