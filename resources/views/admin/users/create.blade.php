@@ -13,31 +13,43 @@
           <h3 class="card-title">Create User</h3>
         </div>
         <div class="card-body">
-          <form action="{{ route('admin.users.create') }}" id="createUserForm" method="post" novalidate>
+          <form action="{{ route('admin.users.store') }}" id="createUserForm" method="post" novalidate>
             @csrf
             <div class="row">
               <div class="col-6 mb-3">
                 <div class="form-group">
                   <label for="name">Name</label>
-                  <input type="text" name="name" id="name" class="form-control">
+                  <input type="text" name="name" id="name" class="form-control" value="{{ old('name') }}">
+                  @error('name')
+                    <span class="text-danger">{{ $message }}</span>
+                  @enderror
                 </div>
               </div>
               <div class="col-6 mb-3">
                 <div class="form-group">
                   <label for="email">Email</label>
-                  <input type="email" name="email" id="email" class="form-control">
+                  <input type="email" name="email" id="email" class="form-control" value="{{ old('email') }}">
+                  @error('email')
+                    <span class="text-danger">{{ $message }}</span>
+                  @enderror
                 </div>
               </div>
               <div class="col-6">
                 <div class="form-group">
                   <label for="password">Password</label>
                   <input type="password" name="password" id="password" class="form-control">
+                  @error('password')
+                    <span class="text-danger">{{ $message }}</span>
+                  @enderror
                 </div>
               </div>
               <div class="col-6">
                 <div class="form-group">
                   <label for="password_confirmation">Password Confirmation</label>
                   <input type="password" name="password_confirmation" id="password_confirmation" class="form-control">
+                  @error('password_confirmation')
+                    <span class="text-danger">{{ $message }}</span>
+                  @enderror
                 </div>
               </div>
             </div>
