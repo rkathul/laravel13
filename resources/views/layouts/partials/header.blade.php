@@ -64,7 +64,7 @@
             class="user-image rounded-circle shadow"
             alt="Admin User"
           />
-          <span class="d-none d-md-inline">Admin User</span>
+          <span class="d-none d-md-inline">{{ auth()->user()->name }}</span>
         </a>
         <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
           <li class="user-header text-bg-primary">
@@ -74,8 +74,8 @@
               alt="Admin User"
             />
             <p>
-              Admin User
-              <small>Sample account</small>
+              {{ auth()->user()->name }}
+              <small>{{ auth()->user()->email }}</small>
             </p>
           </li>
           <li class="user-footer">
