@@ -42,4 +42,10 @@ class UserController extends Controller
         return redirect()->route('admin.users.index')->with('success', 'User updated successfully');
     }
 
+    public function destroy(int $id)
+    {
+        $this->userService->deleteUser($id);
+        return redirect()->route('admin.users.index')->with('success', 'User deleted successfully');
+    }
+
 }

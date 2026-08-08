@@ -5,6 +5,7 @@ namespace App\DataTables;
 use App\Http\Repositories\UserRepository;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
+use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Column;
@@ -22,7 +23,15 @@ class UsersDataTable extends DataTable
         return (new EloquentDataTable($query))
             ->addIndexColumn()
             ->editColumn('created_at', fn (User $user) => $user->created_at?->format('Y-m-d H:i'))
-            ->editColumn('action', fn (User $user) => '<a href="'.route('admin.users.edit', $user->id).'" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a> <a href="javascript:void(0)" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>')
+            ->editColumn('action', function (User $user) {
+                $edit = '<a href="'.route('admin.users.edit', $user->id).'" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>';
+                $delete = $user->id !== Auth::id()
+                    ? '<button type="button" class="btn btn-danger btn-sm btn-delete-user" data-url="'.route('admin.users.destroy', $user->id).'" data-name="'.e($user->name).'"><i class="fas fa-trash"></i></button>'
+                    : '';
+
+                return $edit.' '.$delete;
+            })
+            ->rawColumns(['action'])
             ->setRowId('id');
     }
 
