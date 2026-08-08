@@ -13,10 +13,11 @@
         <p class="login-box-msg">Sign in to start your session</p>
 
         {{-- Layout only: no auth functionality --}}
-        <form action="#" method="get">
+        <form action="{{ route('admin.login.post') }}" id="loginForm" method="post">
+          @csrf
           <label class="visually-hidden" for="loginEmail">Email</label>
           <div class="input-group mb-3">
-            <input id="loginEmail" type="email" class="form-control" placeholder="Email" />
+            <input id="loginEmail" name="email" type="email" class="form-control" placeholder="Email" />
             <div class="input-group-text">
               <span class="bi bi-envelope"></span>
             </div>
@@ -24,7 +25,7 @@
 
           <label class="visually-hidden" for="loginPassword">Password</label>
           <div class="input-group mb-3">
-            <input id="loginPassword" type="password" class="form-control" placeholder="Password" />
+            <input id="loginPassword" name="password" type="password" class="form-control" placeholder="Password" />
             <div class="input-group-text">
               <span class="bi bi-lock-fill"></span>
             </div>
@@ -39,7 +40,7 @@
             </div>
             <div class="col-4">
               <div class="d-grid gap-2">
-                <a href="{{ route('admin.dashboard') }}" class="btn btn-primary">Sign In</a>
+                <button type="submit" class="btn btn-primary">Sign In</button>
               </div>
             </div>
           </div>
@@ -52,3 +53,20 @@
     </div>
   </main>
 @endsection
+@push('scripts')
+  <script>
+    $(document).ready(function () {
+      $('#loginForm').validate({
+        rules: {
+          email: {
+            required: true,
+            email: true,
+          },
+          password: {
+            required: true,
+          },
+        },
+      });
+    });
+  </script>
+@endpush

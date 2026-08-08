@@ -11,6 +11,17 @@
   crossorigin="anonymous"
 ></script>
 <script src="{{ asset('adminlte/js/adminlte.js') }}"></script>
+<script
+  src="https://code.jquery.com/jquery-3.7.1.min.js"
+  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+  crossorigin="anonymous"
+></script>
+<script
+  src="https://code.jquery.com/color/jquery.color-3.0.0.min.js"
+  integrity="sha256-KfnxwOV3FhXN7A/28TCtqslo5fRS23cxO5XcxVO5we8="
+  crossorigin="anonymous"
+></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
 
 <script>
   const SELECTOR_SIDEBAR_WRAPPER = '.sidebar-wrapper';
