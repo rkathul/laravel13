@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\BlogController;
 use App\Http\Controllers\Api\CommentController;
 
 Route::post('/login', [LoginController::class, 'login']);
+Route::post('/register', [LoginController::class, 'register']);
 
 Route::get('/blogs', [BlogController::class, 'listBlogs']);
 Route::get('/blog/{slug}', [BlogController::class, 'showBlog']);
@@ -23,4 +24,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/comment', [CommentController::class, 'createComment']);
     Route::post('/comment/{id}', [CommentController::class, 'updateComment']);
     Route::delete('/comment/{id}', [CommentController::class, 'deleteComment']);
+
+    Route::post('/logout', [LoginController::class, 'logout']);
 });
