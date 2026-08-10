@@ -24,6 +24,7 @@ class UpdateCommentRequest extends FormRequest
     {
         return [
             'comment' => 'required|string|max:1000',
+            'is_published' => 'required|boolean',
         ];
     }
 }

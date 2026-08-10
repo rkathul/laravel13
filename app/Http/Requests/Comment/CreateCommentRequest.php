@@ -25,6 +25,7 @@ class CreateCommentRequest extends FormRequest
         return [
             'comment' => 'required|string|max:1000',
             'blog_id' => 'required|exists:blogs,id',
+            'is_published' => 'required|boolean',
         ];
     }
 }
