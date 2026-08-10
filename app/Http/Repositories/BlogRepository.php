@@ -3,7 +3,6 @@
 namespace App\Http\Repositories;
 
 use App\Models\Blog;
-use Illuminate\Database\Eloquent\Builder;
 
 
 class BlogRepository
