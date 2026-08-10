@@ -13,6 +13,11 @@ class CommentRepository
         return Comment::create($data);
     }
 
+    public function getCommentById(int $id): Comment
+    {
+        return Comment::findOrFail($id);
+    }
+
     public function updateComment(array $data,int $id): Comment
     {
         $comment = Comment::findOrFail($id);

@@ -20,6 +20,10 @@ class CommentService
     public function updateComment(array $data, int $id)
     {
         $data['user_id'] = Auth::user()->id;
+        $comment = $this->commentRepository->getCommentById($id);
+        if ($comment->user_id !== Auth::user()->id) {
+            throw new \Exception('You are not authorized to update this comment.');
+        }
         return $this->commentRepository->updateComment($data, $id);
     }
 

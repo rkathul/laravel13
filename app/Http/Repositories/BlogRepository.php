@@ -15,6 +15,11 @@ class BlogRepository
         ->paginate(10);
     }
 
+    public function getBlogById(int $id)
+    {
+        return Blog::findOrFail($id);
+    }
+
     public function getBlogBySlug(string $slug)
     {
         return Blog::select('id', 'title', 'slug', 'content','user_id')

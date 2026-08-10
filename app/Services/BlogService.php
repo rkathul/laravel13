@@ -18,6 +18,7 @@ class BlogService
 
     public function getBlogBySlug(string $slug)
     {
+
         return $this->blogRepository->getBlogBySlug($slug);
     }
 
@@ -30,6 +31,10 @@ class BlogService
     public function updateBlog(array $data, int $id)
     {
         $data['user_id'] = Auth::user()->id;
+        $blog = $this->blogRepository->getBlogById($id);
+        if ($blog->user_id !== Auth::user()->id) {
+            throw new \Exception('You are not authorized to update this blog.');
+        }
         return $this->blogRepository->updateBlog($data, $id);
     }
 
