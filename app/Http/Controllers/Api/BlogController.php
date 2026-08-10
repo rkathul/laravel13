@@ -23,6 +23,21 @@ class BlogController extends Controller
         return response()->json($blogs);
     }
 
+    public function showBlog(string $slug): JsonResponse
+    {
+        try {
+            $blog = $this->blogService->getBlogBySlug($slug);
+            return response()->json([
+                'success' => true,
+                'data' => $blog,
+            ], 200);
+        } catch(\Throwable $e) {
+             return response()->json([
+                'message' => $e->getMessage(),
+            ], 500);
+        }
+    }
+
     public function createBlog(CreateBlogRequest $request):JsonResponse
     {
         try {

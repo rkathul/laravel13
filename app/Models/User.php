@@ -40,4 +40,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Blog::class);
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class)->select('id', 'comment', 'blog_id', 'user_id', 'is_published');
+    }
 }

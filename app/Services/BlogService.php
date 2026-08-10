@@ -16,6 +16,11 @@ class BlogService
         return $this->blogRepository->getBlogs();
     }
 
+    public function getBlogBySlug(string $slug)
+    {
+        return $this->blogRepository->getBlogBySlug($slug);
+    }
+
     public function createBlog(array $data)
     {
         $data['user_id'] = Auth::user()->id;

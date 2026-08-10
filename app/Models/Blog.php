@@ -15,4 +15,9 @@ class Blog extends Model
     {
         return $this->belongsTo(User::class)->select('id', 'name', 'email');;
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class)->select('id', 'comment', 'blog_id', 'user_id', 'is_published')->where('is_published', true);
+    }
 }

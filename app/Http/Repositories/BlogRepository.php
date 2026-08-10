@@ -15,6 +15,15 @@ class BlogRepository
         ->paginate(10);
     }
 
+    public function getBlogBySlug(string $slug)
+    {
+        return Blog::select('id', 'title', 'slug', 'content','user_id')
+        ->with('user','comments.user')
+        ->where('slug',$slug)
+        ->where('is_published',true)
+        ->firstOrFail();
+    }
+
     public function createBlog(array $data):Blog
     {
         return Blog::create($data);
