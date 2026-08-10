@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Http\Repositories\BlogRepository;
+use Auth;
 
 class BlogService
 {
@@ -14,6 +15,25 @@ class BlogService
     {
         return $this->blogRepository->getBlogs();
     }
+
+    public function createBlog(array $data)
+    {
+        $data['user_id'] = Auth::user()->id;
+        return $this->blogRepository->createBlog($data);
+    }
+
+    public function updateBlog(array $data, int $id)
+    {
+        $data['user_id'] = Auth::user()->id;
+        return $this->blogRepository->updateBlog($data, $id);
+    }
+
+    public function deleteBlog(int $id) 
+    {
+        return $this->blogRepository->deleteBlog($id);
+    }
+
+   
 
    
 }

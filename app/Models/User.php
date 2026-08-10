@@ -35,4 +35,9 @@ class User extends Authenticatable
     protected $fillable = ['name', 'email', 'password'];
 
     protected $guarded = ['updated_at'];
+
+    public function blogs()
+    {
+        return $this->hasMany(Blog::class);
+    }
 }
