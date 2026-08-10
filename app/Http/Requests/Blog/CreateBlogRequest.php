@@ -27,6 +27,7 @@ class CreateBlogRequest extends FormRequest
             'slug' => 'required|string|unique:blogs,slug',
             'content' => 'required',
             'is_published' => 'required',
+            'tags'=> 'required|string',
         ];
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Repositories;
 
 use App\Models\Blog;
+use App\Models\Tag;
 
 
 class BlogRepository
@@ -10,7 +11,7 @@ class BlogRepository
     public function getBlogs()
     {
         return Blog::select('id', 'title', 'slug', 'content','user_id')
-        ->with('user')
+        ->with('user','tags')
         ->where('is_published',true)
         ->paginate(10);
     }
@@ -23,7 +24,7 @@ class BlogRepository
     public function getBlogBySlug(string $slug)
     {
         return Blog::select('id', 'title', 'slug', 'content','user_id')
-        ->with('user','comments.user')
+        ->with('user','comments.user','tags')
         ->where('slug',$slug)
         ->where('is_published',true)
         ->firstOrFail();
@@ -46,6 +47,11 @@ class BlogRepository
         Blog::findOrFail($id)->delete();
     }
 
+    public function updateTags( array $tags): void
+    {
+        Tag::whereIn('blog_id', array_column($tags, 'blog_id'))->delete();
+        Tag::insert($tags);
+    }
 
     
 }

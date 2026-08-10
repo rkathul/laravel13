@@ -27,6 +27,7 @@ class UpdateBlogRequest extends FormRequest
             'slug' => 'required|string|unique:blogs,slug,' . $this->id,
             'content' => 'required',
             'is_published' => 'required',
+            'tags'=> 'required|string',
         ];
     }
 }

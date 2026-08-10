@@ -20,4 +20,9 @@ class Blog extends Model
     {
         return $this->hasMany(Comment::class)->select('id', 'comment', 'blog_id', 'user_id', 'is_published')->where('is_published', true);
     }
+
+    public function tags()
+    {
+        return $this->hasMany(Tag::class)->select('id', 'tag_name', 'blog_id');
+    }
 }
